@@ -60,6 +60,12 @@ Open http://localhost:3000/ with your browser to see the result.
 
 ## API
 
+### Protected Endpoint
+
+Endpoint:
+
+`GET /protected`
+
 ### Register user
 
 Endpoint:

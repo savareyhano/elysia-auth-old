@@ -41,6 +41,48 @@ const app = new Elysia()
       };
     }
   })
+  .get(
+    '/protected',
+    ({ userId }) => {
+      return {
+        userId,
+      };
+    },
+    {
+      async beforeHandle({ headers: { authorization }, set, accessJwt }) {
+        if (!authorization) {
+          set.status = 400;
+          set.headers[
+            'WWW-Authenticate'
+          ] = `Bearer realm='sign', error="invalid_request"`;
+
+          return 'Unauthorized';
+        }
+
+        const bearer = authorization.split(' ')[1];
+
+        if (!bearer) {
+          set.status = 400;
+          set.headers[
+            'WWW-Authenticate'
+          ] = `Bearer realm='sign', error="invalid_request"`;
+
+          return 'Unauthorized';
+        }
+
+        const verifiedBearer = await accessJwt.verify(bearer);
+
+        if (!verifiedBearer) {
+          set.status = 400;
+          set.headers[
+            'WWW-Authenticate'
+          ] = `Bearer realm='sign', error="invalid_request"`;
+
+          return 'Unauthorized';
+        }
+      },
+    }
+  )
   .group('/api', (app) =>
     app
       .use(users(new UsersService(prisma), usersValidator))
