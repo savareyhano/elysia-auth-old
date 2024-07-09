@@ -1,5 +1,6 @@
 import ConflictError from '../exceptions/conflict-error';
 import InvariantError from '../exceptions/invariant-error';
+import NotFoundError from '../exceptions/not-found-error';
 
 class UsersService {
   _prisma: any;
@@ -19,6 +20,20 @@ class UsersService {
 
     if (user) {
       throw new ConflictError('user already exists.');
+    }
+
+    return user;
+  }
+
+  async verifyUser(username: string) {
+    const user = await this._prisma.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundError('user does not exist.');
     }
 
     return user;
