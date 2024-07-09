@@ -59,9 +59,9 @@ const app = new Elysia()
           return 'Unauthorized';
         }
 
-        const bearer = authorization.split(' ')[1];
+        const token = authorization.split(' ')[1];
 
-        if (!bearer) {
+        if (!token) {
           set.status = 400;
           set.headers[
             'WWW-Authenticate'
@@ -70,9 +70,9 @@ const app = new Elysia()
           return 'Unauthorized';
         }
 
-        const verifiedBearer = await accessJwt.verify(bearer);
+        const verifiedToken = await accessJwt.verify(token);
 
-        if (!verifiedBearer) {
+        if (!verifiedToken) {
           set.status = 400;
           set.headers[
             'WWW-Authenticate'
