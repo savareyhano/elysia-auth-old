@@ -82,3 +82,17 @@ Payload:
   "password": "johndoe123"
 }
 ```
+
+### Refresh Token
+
+Endpoint:
+
+`POST /api/authentications/refresh-token`
+
+Payload:
+
+```json
+{
+  "refreshToken": "yourrefreshtokenhere"
+}
+```

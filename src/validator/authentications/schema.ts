@@ -5,4 +5,11 @@ const postAuthenticationLoginPayloadSchema = t.Object({
   password: t.String(),
 });
 
-export { postAuthenticationLoginPayloadSchema };
+const postAuthenticationRefreshTokenPayloadSchema = t.Object({
+  refreshToken: t.String(),
+});
+
+export {
+  postAuthenticationLoginPayloadSchema,
+  postAuthenticationRefreshTokenPayloadSchema,
+};

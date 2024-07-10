@@ -3,6 +3,7 @@ import { jwt } from '@elysiajs/jwt';
 
 // libs
 import prisma from './libs/prisma';
+import tokenManager from './libs/token-manager';
 
 // services
 import UsersService from './services/users-service';
@@ -90,6 +91,7 @@ const app = new Elysia()
         authentications(
           new AuthenticationsService(),
           new UsersService(prisma),
+          tokenManager,
           authenticationsValidator
         )
       )
