@@ -12,7 +12,7 @@ class UsersHandler {
     try {
       const { username, password } = body;
 
-      await this._usersService.verifyNewUsername(username);
+      await this._usersService.verifyNewUser(username);
 
       const user = await this._usersService.addUser(username, password);
 
