@@ -8,7 +8,7 @@ class UsersService {
     this._prisma = prisma;
   }
 
-  async verifyNewUsername(username: string) {
+  async verifyNewUser(username: string) {
     const user = await this._prisma.user.findUnique({
       where: {
         username,
