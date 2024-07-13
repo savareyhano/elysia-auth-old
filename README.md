@@ -53,6 +53,12 @@ Endpoint:
 
 `GET /protected`
 
+Header:
+
+```
+Authorization: Bearer youraccesstokenhere
+```
+
 ### Register user
 
 Endpoint:
